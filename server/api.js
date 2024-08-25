@@ -6,8 +6,8 @@ const {SERVER_IP, SERVER_KEY} = require("../config.server");
 const {error} = require("./lib/logger");
 const {get} = require("superagent");
 const {convert2json} = require("./lib/util");
-const {Player, getPlayers} = require("./model/player");
-const {Vehicle ,getVehicles} = require("./model/vehicle");
+const {getPlayers} = require("./model/player");
+const {getVehicles} = require("./model/vehicle");
 
 module.exports.getMap = function (cb) {
     get('http://' + SERVER_IP + '/feed/dedicated-server-stats-map.jpg?code=' + SERVER_KEY + '&quality=100&size=2048')
