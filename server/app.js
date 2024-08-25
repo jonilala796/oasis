@@ -26,8 +26,8 @@ server.use(function(req, res, next){
 server.use(cookieParser())
 server.use(i18n);
 
-var viewRouter = require('./routes/index')
-  , apiRouter = require('./routes/api');
+const viewRouter = require('./routes/index')
+    , apiRouter = require('./routes/api');
 
 server.use('/api',apiRouter)
 server.use('/', viewRouter);
@@ -36,7 +36,7 @@ server.use(function (req, res, next) {
   next(createError(404));
 })
 
-server.use(function(err, req, res, next) {
+server.use(function(err, req, res) {
   logger.error(err.message + ': ' + err.statusCode + ' ' + req.method + ' ' + req.originalUrl)
   api.getServerOnly((server) => {
     res.status(err.statusCode).render('error', {
@@ -46,7 +46,7 @@ server.use(function(err, req, res, next) {
   })
 })
 
-var serverPort = config.WEB_PORT >= 0 ? config.WEB_PORT : 3000;
+const serverPort = config.WEB_PORT >= 0 ? config.WEB_PORT : 3000;
 
 server.listen(serverPort, () => {
   logger.info('Oasis ' + config.VERSION + ' started on port ' + serverPort);

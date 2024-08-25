@@ -1,18 +1,18 @@
 function onEachFeature(feature, layer) {
   if (layer instanceof L.Marker) {
     layer.bindPopup(layer.feature.properties.popup)
-    var customIcon = L.icon({
-      iconUrl: '/images/icons/'+layer.feature.properties.icon.icon,
+    const customIcon = L.icon({
+      iconUrl: '/images/icons/' + layer.feature.properties.icon.icon,
       iconSize: [layer.feature.properties.icon.dimension, layer.feature.properties.icon.dimension],
-      iconAnchor: [(layer.feature.properties.icon.dimension / 2), (layer.feature.properties.icon.dimension/2)],
+      iconAnchor: [(layer.feature.properties.icon.dimension / 2), (layer.feature.properties.icon.dimension / 2)],
       popupAnchor: [0, -10]
-    })
+    });
     layer.setIcon(customIcon)
   }
-};
+}
 
 function isUrl(needle) {
-  return window.location.href.indexOf(needle) > -1 ? true : false;
+  return window.location.href.indexOf(needle) > -1;
 }
 
 $(document).ready(function() {
@@ -23,10 +23,10 @@ $(document).ready(function() {
     })
   }
   else {
-    var map = L.map('map', { crs: L.CRS.Simple, maxZoom: 5 })
+    const map = L.map('map', {crs: L.CRS.Simple, maxZoom: 5});
 
-    var bounds = [[-750, -750], [750, 750]];
-    var image = L.imageOverlay('/api/map.jpg', bounds).addTo(map);
+    const bounds = [[-750, -750], [750, 750]];
+    const image = L.imageOverlay('/api/map.jpg', bounds).addTo(map);
     map.fitBounds([[-375, -375], [375, 375]])
     map.setMaxBounds([[-375, -375], [375, 375]])
 

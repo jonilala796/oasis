@@ -1,7 +1,7 @@
-var express = require('express')
-  , router = express.Router()
-  , async = require('async')
-  , api = require('../api')
+const express = require('express')
+    , router = express.Router()
+    , async = require('async')
+    , api = require('../api');
 
 router.get('/lang/:lang', function (req, res) {
   res.setLocale(req.params.lang)
@@ -9,8 +9,8 @@ router.get('/lang/:lang', function (req, res) {
   res.redirect('back');
 })
 
-var _server = null
-  , _savegame = null;
+let _server = null
+    , _savegame = null;
 
 router.get('*', function (req, res, next){
   async.parallel({
@@ -29,7 +29,7 @@ router.get('*', function (req, res, next){
   })
 })
 
-router.get('/economy', function(req, res, next){
+router.get('/economy', function(req, res){
   api.getEconomy((economy) => {
     economy.calculateEconomy(_savegame.economicDifficulty, (eco) => {
       res.render('economy', {
@@ -40,13 +40,13 @@ router.get('/economy', function(req, res, next){
   })
 })
 
-router.get('/mods', function (req, res, next) {
+router.get('/mods', function (req, res) {
   res.render('mods', {
     server: _server.server
   })
 })
 
-router.get('/', function(req, res, next){
+router.get('/', function(req, res){
   res.render('home', {
     game: _savegame,
     slots: _server.slots,

@@ -1,19 +1,14 @@
-var lodash = require('lodash')
+const lodash = require('lodash');
 
-module.exports.Server = function(server){
-  this.name = server._attributes.name
-  this.version = server._attributes.version
-  this.mods = getMods((server.Mods !== undefined ? server.Mods.Mod : null))
-}
-
-module.exports.Slots = function(slots){
-  this.onlineCount = slots.numUsed
-  this.maxCount = slots.capacity
-}
-
-var getMods = function(mods){
-  var results = []
-  if (!Array.isArray(mods)) {
+const Mod = function(mod) {
+  this.name = mod._text
+  this.filename = mod._attributes.name
+  this.author = mod._attributes.author
+  this.version = mod._attributes.version
+};
+const getMods = function(mods){
+    const results = [];
+    if (!Array.isArray(mods)) {
     mods = [mods];
   }
 
@@ -23,11 +18,14 @@ var getMods = function(mods){
     }
   })
   return results
+};
+module.exports.Server = function(server){
+  this.name = server._attributes.name
+  this.version = server._attributes.version
+  this.mods = getMods((server.Mods !== undefined ? server.Mods.Mod : null))
 }
 
-var Mod = function(mod) {
-  this.name = mod._text
-  this.filename = mod._attributes.name
-  this.author = mod._attributes.author
-  this.version = mod._attributes.version
+module.exports.Slots = function(slots){
+  this.onlineCount = slots.numUsed
+  this.maxCount = slots.capacity
 }

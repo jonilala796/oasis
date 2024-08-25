@@ -1,9 +1,9 @@
-var util = require('../lib/util')
+const util = require('../lib/util')
 
 module.exports.Game = function (game) {
-  var timeScale = game.settings !== undefined ? Number(game.settings.timeScale._text) : 0
-  var playTime = game.statistics !== undefined ? Number(game.statistics.playTime._text) : 0
-  var serverTime = playTime * timeScale
+  const timeScale = game.settings !== undefined ? Number(game.settings.timeScale._text) : 0;
+  const playTime = game.statistics !== undefined ? Number(game.statistics.playTime._text) : 0;
+  const serverTime = playTime * timeScale;
 
   this.money = util.formatNumber(game.statistics.money._text, 0, ' €')
   this.playtime = util.calcAndFormatTime(serverTime)
@@ -12,5 +12,5 @@ module.exports.Game = function (game) {
   this.saveInterval = game.settings !== undefined ? util.formatNumber(game.settings.autoSaveInterval._text, 0, '') : 0
   this.difficulty = game.settings !== undefined ? game.settings.difficulty._text : '-'
   this.economicDifficulty = game.settings !== undefined ? game.settings.economicDifficulty._text : '-'
-  this.isNewServer = game.settings === undefined || game.statistics === undefined ? true : false
+  this.isNewServer = !!(game.settings === undefined || game.statistics === undefined)
 }

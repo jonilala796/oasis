@@ -9,8 +9,8 @@ const logger = require('./server/lib/logger')
 
 require('dotenv').config()
 
-var config = {};
-var errored = false;
+const config = {};
+let errored = false;
 
 config.WEB_PORT = process.env.WEB_PORT;
 config.SERVER_IP = process.env.SERVER_IP;
@@ -19,7 +19,7 @@ config.DEFAULT_LANGUAGE = process.env.DEFAULT_LANGUAGE;
 
 // put required parameters befor this check to ensure they are checked
 for (const [k,v] of Object.entries(config)){
-  if (v == "" || typeof v == 'undefined'){
+  if (v === "" || typeof v == 'undefined'){
     logger.error(k+" missing! Please check configuration!");
     errored = true;
   }

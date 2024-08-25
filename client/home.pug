@@ -10,7 +10,7 @@ block content
           if players.length>0
             each player in players
               li.list-group-item=player.name
-                if player.admin=="true"
+                if player.admin==="true"
                   span.top-0.ms-2.badge.rounded-pill.bg-danger
                     | admin
                 span.float-end=player.uptime

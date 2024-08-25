@@ -1,5 +1,5 @@
 module.exports.createObjects = function(objects){
-  var geos = []
+  const geos = [];
   objects.forEach((obj) => {
     if(obj.posx!=null){
       geos.push({
@@ -16,9 +16,8 @@ module.exports.createObjects = function(objects){
 }
 
 module.exports.createGeoJson = function(objects) {
-  var json = {
+  return {
     type: "FeatureCollection",
     features: objects,
-  }
-  return json;
+  };
 }

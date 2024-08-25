@@ -3,6 +3,8 @@
 *.code-*
 security/
 *.psd
+.idea/
+
 # Logs
 logs
 *.log

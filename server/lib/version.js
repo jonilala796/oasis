@@ -1,7 +1,7 @@
 module.exports = () => {
-  var version = process.env.npm_package_version ? process.env.npm_package_version : '0';
+    let version = process.env.npm_package_version ? process.env.npm_package_version : '0';
 
-  try {
+    try {
     version = require('./appversion.js')
     return version
   }
